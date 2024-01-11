@@ -4,7 +4,7 @@
         private $strNombre;
         private $intTelefono;
         private $strEmail;
-        private $conexion;
+        
 
        
         public function insertUsuario(string $nombre,int $telefono, string $email){
@@ -18,5 +18,12 @@
             $resInsert=$insert->execute($arrayData);
             $idInsert=$conexion->lastInsertId();
             return $idInsert;
+        }
+
+        public function getUsuarios(){
+            $sql="SELECT * FROM  usuario";
+            $execute=$this->connect()->query($sql);
+            $request=$execute->fetchAll(PDO::FETCH_ASSOC);
+            return $request;
         }
      } 
